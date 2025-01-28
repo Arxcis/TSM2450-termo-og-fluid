@@ -55,10 +55,26 @@ areal = 160 + 4*80 + 2*40 + 70
 personer_per_areal = 0.7 # person/m2
 personer = areal * personer_per_areal
 
+personer_160 = 160 * personer_per_areal
+personer_80 = 80 * personer_per_areal
+personer_70 = 70 * personer_per_areal
+personer_40 = 40 * personer_per_areal
+
+luft_pers_per_time = 26 # m3
+luft_pers_per_sekund = luft_pers_per_time / 3600
+
+luft_per_sekund = luft_pers_per_sekund * personer
+
+
 print(f"""
     Svar:
-        areal    = {areal:>10.2f} m2
-        personer = {int(personer):>10} stk
+        areal          = {int(areal)} m2
+        personer       = {int(personer)} stk
+        personer 160m2 = {personer_160:.0f} stk 
+        personer  80m2 = {personer_80:.0f} stk
+        personer  70m2 = {personer_70:.0f} stk 
+        personer  40m2 = {personer_40:.0f} stk 
 
-
+        luft per pers  = {luft_pers_per_sekund:.4f} m3/person/s
+        luft total     = {luft_per_sekund:.2f} m3/s
       """)
