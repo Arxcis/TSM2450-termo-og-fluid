@@ -114,7 +114,7 @@ def oppg2():
             "Q [m3/s]": (round(rør.Q, 3) for rør in Røra),
             "A min [m2]": (round(rør.A_min, 3) for rør in Røra),
             "A hylle [m2]": (round(rør.A_hylle, 3) for rør in Røra),
-            "lengde [m]": (round(rør.lengde, 3) for rør in Røra),
+            "len [m]": (round(rør.lengde, 3) for rør in Røra),
             "volum [m3]": (round(rør.volum, 3) for rør in Røra),
             "v hylle [m/s]": (round(rør.v_hylle, 3) for rør in Røra),
         }, index=(rør.navn for rør in Røra)).to_string(), "        "))
