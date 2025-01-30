@@ -52,20 +52,19 @@ def oppg2():
 
         return {
             "navn": navn,
-            "Q": round(Q, 3),
+            "Q": Q,
             "areal": areal,
-            "A_min": round(A_min,3),
-            "A_hylle": round(A_hylle, 3),
-            "v_max": round(Q / A_min, 1),
-            "v_hylle": round(Q / A_hylle, 3),
+            "A_min": A_min,
+            "A_hylle": A_hylle,
+            "v_max": Q / A_min,
+            "v_hylle": Q / A_hylle,
             "lengde": lengde,
-            "volum": round(A_hylle * lengde, 3),
+            "volum": A_hylle * lengde,
         } 
 
-    rør = [beregn_rør(*r) for r in rør]
-    
-    rør_lengde = sum([r["lengde"] for r in rør])  # m
-    rør_volum  = sum([r["lengde"]*r["A_hylle"] for r in rør])# m3
+    rør        = [beregn_rør(*r) for r in rør]
+    rør_lengde = sum([r["lengde"] for r in rør])              # m
+    rør_volum  = sum([r["lengde"]*r["A_hylle"] for r in rør]) # m3
 
     #
     # 3. Pretty print
@@ -97,12 +96,12 @@ Oppg2 svar:
           """)
 
     print(DataFrame({
-        "Rom [m2]": (r["areal"] for r in rør),
-        "Q [m3/s]": (r["Q"] for r in rør),
+        "Rom [m2]": (["areal"] for r in rør),
+        "Q [m3/s]": (round(r["Q"], 3) for r in rør),
         "Lengde [m]": (r["lengde"] for r in rør),
-        "A min [m2]": (r["A_min"] for r in rør),
-        "A hylle [m2]": (r["A_hylle"] for r in rør),
-        "v hylle [m/s]": (r["v_hylle"] for r in rør),
+        "A min [m2]": (round(r["A_min"], 3) for r in rør),
+        "A hylle [m2]": (round(r["A_hylle"], 3) for r in rør),
+        "v hylle [m/s]": (round(r["v_hylle"], 3) for r in rør),
 
         }, index=(r["navn"] for r in rør)))
        
