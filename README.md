@@ -30,30 +30,45 @@ jonas@pop-os:~/git/TSM2450-termo-og-fluid$ python oppg1.py
 
 ### Demo
 ```bash
-jonas@pop-os:~/git/TSM2450-termo-og-fluid$ python oppg2.py
+jonas ~/git/TSM2450-oblig1 $ python oppg2.py
 
-Oppg2 svar:
+#
+# Oppg2 svar:
+#
 
     Innstillinger:
-            v_max            =  10 m/s
-            areal            = 630 m2
+        V max            =     10.0 m/s
+        Q luft per time  =     26.0 m3/person/t
+        
+                    Lengde [m]  Areal [m2]
+        hoved              1.5         630
+        vestre            15.0         320
+        vestre 160         5.0         160
+        vestre 80          5.0          80
+        vestre 80          5.0          80
+        østre             15.0         310
+        østre 80           5.0          80
+        østre 80           5.0          80
+        østre 70           4.5          70
+        østre 40           5.0          40
 
-            Q luft per time  =   26.0 m3/person/t
-            Q luft per pers  = 0.0072 m3/person/s
+    Beregninger:
+        Q luft per sekund = 0.0072 m3/person/s
 
-    Rør:
-        Total lengde = 66.00 m
-        Total volum  =  9.94 m3
-
-           Rom [m2]  Q [m3/s]  Lengde [m]  A min [m2]  A hylle [m2]  v hylle [m/s]
-hoved       [areal]     3.185         1.5       0.319         0.503          6.332
-vestre      [areal]     1.618        15.0       0.162         0.196          8.254
-vestre 160  [areal]     0.809         5.0       0.081         0.126          6.420
-vestre 80   [areal]     0.404         5.0       0.040         0.049          8.254
-vestre 80   [areal]     0.404         5.0       0.040         0.049          8.254
-østre       [areal]     1.567        15.0       0.157         0.196          7.996
-østre 80    [areal]     2.427         5.0       0.243         0.312          7.778
-østre 80    [areal]     0.404         5.0       0.040         0.049          8.254
-østre 70    [areal]     0.354         4.5       0.035         0.049          7.222
-østre 40    [areal]     0.202         5.0       0.020         0.031          6.523
+        Total personer  =    441 stk
+        Total romareal  = 630.00 m2
+        Total rørlengde =  66.00 m
+        Total rørvolum  =   8.62 m3
+          
+                    Personer  Q [m3/s]  A min [m2]  A hylle [m2]  lengde [m]  volum [m3]  v hylle [m/s]
+        hoved            441     3.185       0.319         0.503         1.5       0.754          6.332
+        vestre           224     1.618       0.162         0.196        15.0       2.940          8.254
+        vestre 160       112     0.809       0.081         0.126         5.0       0.630          6.420
+        vestre 80         56     0.404       0.040         0.049         5.0       0.245          8.254
+        vestre 80         56     0.404       0.040         0.049         5.0       0.245          8.254
+        østre            217     1.567       0.157         0.196        15.0       2.940          7.996
+        østre 80          56     0.404       0.040         0.049         5.0       0.245          8.254
+        østre 80          56     0.404       0.040         0.049         5.0       0.245          8.254
+        østre 70          49     0.354       0.035         0.049         4.5       0.221          7.222
+        østre 40          28     0.202       0.020         0.031         5.0       0.155          6.523
 ```
