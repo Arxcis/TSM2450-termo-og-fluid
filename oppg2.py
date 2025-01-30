@@ -14,17 +14,17 @@ def oppg2():
     Q_luft_pers_per_time = 26           # m3/t
     v_max                = 10           # m/s
     rør = [
-        ("hoved",  160+80+80+80+80+70+40+40),
-        ("vestre", 160+80+80),
-        ("vestre 160", 160),
-        ("vestre 80", 80),
-        ("vestre 80", 80),
+        ("hoved",       1.5, 160+80+80+80+80+70+40+40),
+        ("vestre",     15.0, 160+80+80),
+        ("vestre 160",  5.0, 160),
+        ("vestre 80",   5.0, 80),
+        ("vestre 80",   5.0, 80),
         
-        ("østre", 80+80+70+40+40),
-        ("østre 80", 80),
-        ("østre 80", 80),
-        ("østre 80", 70),
-        ("østre 40", 40),
+        ("østre",    15.0, 80+80+70+40+40),
+        ("østre 80", 5.0, 480),
+        ("østre 80", 5.0, 80),
+        ("østre 70", 4.5, 70),
+        ("østre 40", 5.0, 40),
     ]
 
     #
@@ -40,7 +40,7 @@ def oppg2():
 
     Q_luft_pers_per_sekund = Q_luft_pers_per_time / 3600  # m3/pers/s
     
-    def beregn_rør(navn: str, areal:int):
+    def beregn_rør(navn: str, lengde: float, areal:int):
         personer = areal * personer_per_areal
         Q = Q_luft_pers_per_sekund * personer
 
@@ -58,10 +58,15 @@ def oppg2():
             "A_hylle": round(A_hylle, 3),
             "v_max": round(Q / A_min, 1),
             "v_hylle": round(Q / A_hylle, 3),
+            "lengde": lengde,
+            "volum": round(A_hylle * lengde, 3),
         } 
 
-    rør = [ beregn_rør(*r) for r in rør]
+    rør = [beregn_rør(*r) for r in rør]
     
+    rør_lengde = sum([r["lengde"] for r in rør])  # m
+    rør_volum  = sum([r["lengde"]*r["A_hylle"] for r in rør])# m3
+
     #
     # 3. Pretty print
     #
@@ -86,14 +91,17 @@ Oppg2 svar:
 
             v_max = {v_max} m/s
 
-    Rør:""")
+    Rør:
+        Total lengde = {rør_lengde:>5.2f} m
+        Total volum  = {rør_volum:>5.2f} m3
+          """)
 
     print(DataFrame({
         "Rom [m2]": (r["areal"] for r in rør),
         "Q [m3/s]": (r["Q"] for r in rør),
+        "Lengde [m]": (r["lengde"] for r in rør),
         "A min [m2]": (r["A_min"] for r in rør),
         "A hylle [m2]": (r["A_hylle"] for r in rør),
-        "v max [m/s]": (r["v_max"] for r in rør),
         "v hylle [m/s]": (r["v_hylle"] for r in rør),
 
         }, index=(r["navn"] for r in rør)))
