@@ -9,12 +9,12 @@ def oppg2():
     #
     # 1. Configure
     #
-    areal = int(160 + 4*80 + 2*40 + 70) # m2
     personer_per_areal   = 0.7          # person/m2
     Q_luft_pers_per_time = 26           # m3/t
     v_max                = 10           # m/s
     rør = [
         ("hoved",       1.5, 160+80+80+80+80+70+40+40),
+
         ("vestre",     15.0, 160+80+80),
         ("vestre 160",  5.0, 160),
         ("vestre 80",   5.0, 80),
@@ -30,14 +30,6 @@ def oppg2():
     #
     # 2. Compute
     #
-    personer     = areal * personer_per_areal
-    personer_160 = 160 * personer_per_areal
-    personer_80  = 80 * personer_per_areal
-    personer_70  = 70 * personer_per_areal
-    personer_40  = 40 * personer_per_areal 
-    personer_vestre = personer_160 + 2*personer_80
-    personer_østre  = 2*personer_80 + 2*personer_40 + personer_70
-
     Q_luft_pers_per_sekund = Q_luft_pers_per_time / 3600  # m3/pers/s
     
     def beregn_rør(navn: str, lengde: float, areal:int):
@@ -63,6 +55,7 @@ def oppg2():
         } 
 
     rør        = [beregn_rør(*r) for r in rør]
+    areal  = rør[0]["areal"]
     rør_lengde = sum([r["lengde"] for r in rør])              # m
     rør_volum  = sum([r["lengde"]*r["A_hylle"] for r in rør]) # m3
 
@@ -76,19 +69,11 @@ def oppg2():
 Oppg2 svar:
 
     Innstillinger:
-            areal              = {areal} m2
-
-            personer_per_areal = {personer_per_areal} stk
-            personer {areal}m2     = {ceil(personer)} stk
-            personer 160m2     = {ceil(personer_160)} stk 
-            personer  80m2     = {ceil(personer_80)} stk
-            personer  70m2     = {ceil(personer_70)} stk 
-            personer  40m2     = {ceil(personer_40)} stk
+            v_max            =  {v_max} m/s
+            areal            = {areal} m2
 
             Q luft per time  = {Q_luft_pers_per_time:>6.1f} m3/person/t
             Q luft per pers  = {Q_luft_pers_per_sekund:>6.4f} m3/person/s
-
-            v_max = {v_max} m/s
 
     Rør:
         Total lengde = {rør_lengde:>5.2f} m
