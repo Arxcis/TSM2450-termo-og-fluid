@@ -1,6 +1,10 @@
 
 # TSM2450 Oblig 1
 
+* Emne: Termo- og fluidmekanikk
+* Tid: Vår 2025 USN Porsgrunn
+* Repo: https://github.com/Arxcis/TSM2450-oblig1
+
 ## Oppg 1
 
 ### Demo
