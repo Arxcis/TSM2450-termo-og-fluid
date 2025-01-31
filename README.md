@@ -5,9 +5,17 @@
 * Tid: Vår 2025 USN Porsgrunn
 * Repo: https://github.com/Arxcis/TSM2450-oblig1
 
-## Oppg 1
+## 1. Olje/vann-separator
 
-### Demo
+### 1.1 Trykk i bunn av tanken
+
+Pythonskript viser utregning av trykket i bunnen av tanken. Bruker ligning for hydrostatisk trykk - $ \delta P = \rho g y $
+
+```py
+
+```
+
+#### 1.2 Demo av skript
 ```bash
 jonas@pop-os:~/git/TSM2450-termo-og-fluid$ python oppg1.py
 
@@ -26,9 +34,40 @@ jonas@pop-os:~/git/TSM2450-termo-og-fluid$ python oppg1.py
           P_abs   =   110417.6 Pa
 ```
 
-## Oppg 2
+## 2. Ventilasjon i klasserom
 
-### Demo
+### 2.1 Topografi
+
+Noen alternative topografier som er vurdert:
+* **Alternativ A: Ringmating** - sende luftstrømmen i en sløyfe som dekker alle rom. Fordel: Inntak kan plasseres hvor som helst på sløyfa og enkelt flyttes i etterkant. Ulempe: Krever som regel mer rør. Dyrt. Ikke mulig å variere tykkelsen på røret i sløyfa, siden hele sløyfa må dimensjoneres til å takle en luftstrøm for hele bygget.
+* **Alternativ B: Inntak i vest eller øst - i enden av korridoren** - Fordel: Inntak plassers ved fotgjengerinngang. Luft fordeles på samme måte som folk. For hver dør i korridoren vil det også være et luftinntak. Trafikken og luftstrømmen blir mindre og mindre jo lenger en kommer nedover i korridoren. Trestruktur. Ulemper: Rommen helt i enden av korridoren har lang vei til inntaket. Det kan bli problemer med tap av trykk på lange strekk, selv om dette ikke skal tas hensyn til i denne oppgaven. Det største hovedrøret kan bli langt, dersom det største rommet er plassert langt unna inntaket.
+* **Alternativ C: Inntak i midten av korridor** - Fordeler: Ingen rom er langt unna inntaket. Hovedrøret splittes med en gang det kommer ned fra taket til et vestre og et østre rør som går i hver sin retning nedover korridoren. Dette gjør at hovedrøret som er det største og dyreste røret blir så kort som mulig. Inntak kan plasseres midt på taket, lengst unna vinduer og innganger for fotgjengere. Dette kan hjelpe på å redusere støy, siden inntaket er en stor kilde til støy i et ventilasjonsanlegg hvor den største viften er plassert.
+
+
+Alternativ C ble valgt. Her er en skisse av hvordan det blir:
+
+<legg inn skisse her>
+
+### 2.2 Beregning av Q_inn
+
+Krav til luftstrøm per pers settes til 26 m3/t og det er krav til at en skal tilby luft til 0.7personer per m2. På et romareal på 630m2 gir det oss 441 personer. 441 personer trenger (26 * 441) m3/t = 11 466 m3/t eller 11 466 m3/t / 3600 s/t = 3.185 m3/s.
+
+### 2.3 Valg av rør
+
+Rør er hyllevare. Beregningene gir et minste tverrsnitt for å tilfredstille krav til v_max og Q_per_pers_per_sekund. 
+$$
+ A_{minste} =  \frac{Q}{v_{max}}
+$$
+
+Da gjelder det å finne en hyllevare som er større, men så nærmt som mulig minste tverrsnitt. Tabell viser alternative rør:
+
+<sett inn tabell>
+
+Kode viser hvordan rør velges fra tabell:
+
+<sett inn kode>
+
+### 2.4 Demo av skript
 ```bash
 jonas ~/git/TSM2450-oblig1 $ python oppg2.py
 

@@ -31,7 +31,7 @@ def oppg2():
     #
     # 1. Innstillinger
     #
-    Personer_per_areal   = 0.7 # person/m2
+    Persontetthet   = 0.7 # person/m2
     Q_luft_pers_per_time = 26  # m3/t
     V_max                = 10  # m/s
 
@@ -58,7 +58,7 @@ def oppg2():
     from math import ceil
 
     for rør in Røra:
-        rør.personer = ceil(rør.areal * Personer_per_areal)
+        rør.personer = ceil(rør.areal * Persontetthet)
         rør.Q = Q_luft_pers_per_sekund * rør.personer
         rør.A_min = rør.Q / V_max
         
@@ -89,8 +89,9 @@ def oppg2():
 #
 
     Innstillinger:
-        V max            = {V_max:>8.1f} m/s
-        Q luft per time  = {Q_luft_pers_per_time:>8.1f} m3/person/t
+        V max           = {V_max:>8.1f} m/s
+        Q luft per time = {Q_luft_pers_per_time:>8.1f} m3/person/t
+        Persontetthet   = {Persontetthet:>8.1f} person/m2
         """)
 
     print(textwrap.indent(DataFrame({
