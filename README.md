@@ -9,7 +9,7 @@
 
 ### 1.1 Trykk i bunn av tanken
 
-Pythonskript viser utregning av trykket i bunnen av tanken. Bruker ligning for hydrostatisk trykk - $ \delta P = \rho g y $
+Pythonskript viser utregning av trykket i bunnen av tanken. Bruker ligning for hydrostatisk trykk - $\Delta P = \rho g y$
 
 ```py
 
@@ -40,7 +40,7 @@ jonas@pop-os:~/git/TSM2450-termo-og-fluid$ python oppg1.py
 
 Noen alternative topografier som er vurdert:
 * **Alternativ A: Ringmating** - sende luftstrømmen i en sløyfe som dekker alle rom. Fordel: Inntak kan plasseres hvor som helst på sløyfa og enkelt flyttes i etterkant. Ulempe: Krever som regel mer rør. Dyrt. Ikke mulig å variere tykkelsen på røret i sløyfa, siden hele sløyfa må dimensjoneres til å takle en luftstrøm for hele bygget.
-* **Alternativ B: Inntak i vest eller øst - i enden av korridoren** - Fordel: Inntak plassers ved fotgjengerinngang. Luft fordeles på samme måte som folk. For hver dør i korridoren vil det også være et luftinntak. Trafikken og luftstrømmen blir mindre og mindre jo lenger en kommer nedover i korridoren. Trestruktur. Ulemper: Rommen helt i enden av korridoren har lang vei til inntaket. Det kan bli problemer med tap av trykk på lange strekk, selv om dette ikke skal tas hensyn til i denne oppgaven. Det største hovedrøret kan bli langt, dersom det største rommet er plassert langt unna inntaket.
+* **Alternativ B: Inntak i vest eller øst - i enden av korridoren** - Fordel: Inntak plassers ved fotgjengerinngang. Luft fordeles på samme måte som folk. For hver dør i korridoren vil det også være et luftinntak. Trafikken og luftstrømmen blir mindre og mindre jo lenger en kommer nedover i korridoren. Trestruktur. Ulemper: Rommen helt i enden av korridoren har lang vei til inntaket. Det kan bli problemer med tap av trykk på lange strekk, selv om dette ikke skal tas hensyn til i denne oppgaven. Det største hovedrøret kan bli langt, dersom det største rommet er plassert langt inn i korridoren.
 * **Alternativ C: Inntak i midten av korridor** - Fordeler: Ingen rom er langt unna inntaket. Hovedrøret splittes med en gang det kommer ned fra taket til et vestre og et østre rør som går i hver sin retning nedover korridoren. Dette gjør at hovedrøret som er det største og dyreste røret blir så kort som mulig. Inntak kan plasseres midt på taket, lengst unna vinduer og innganger for fotgjengere. Dette kan hjelpe på å redusere støy, siden inntaket er en stor kilde til støy i et ventilasjonsanlegg hvor den største viften er plassert.
 
 
@@ -55,9 +55,9 @@ Krav til luftstrøm per pers settes til 26 m3/t og det er krav til at en skal ti
 ### 2.3 Valg av rør
 
 Rør er hyllevare. Beregningene gir et minste tverrsnitt for å tilfredstille krav til v_max og Q_per_pers_per_sekund. 
-$$
- A_{minste} =  \frac{Q}{v_{max}}
-$$
+```math
+ A_{minste} =  \frac{Q_{inn}}{v_{max}}
+```
 
 Da gjelder det å finne en hyllevare som er større, men så nærmt som mulig minste tverrsnitt. Tabell viser alternative rør:
 
