@@ -180,9 +180,8 @@ if __name__ == "__main__":
     alternativer = [A, B, C, D]
 
     from pandas import DataFrame
-    import textwrap
     
-    print(textwrap.indent(DataFrame({
+    print(DataFrame({
         "Antall rør": (alt["antall"] for alt in alternativer),
         "Rørlengde [m]": (alt["lengde"] for alt in alternativer),
         "Rørvolum [m2]": (alt["volum"] for alt in alternativer),
@@ -191,6 +190,6 @@ if __name__ == "__main__":
         "B: Trestruktur fra øst",
         "C: Trestruktur fra midten",
         "D: Gaffel fra vest",
-    )).to_string(), "        "))
+    )))
 
     

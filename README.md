@@ -38,7 +38,7 @@ jonas@pop-os:~/git/TSM2450-termo-og-fluid$ python oppg1.py
 
 ### 2.1 Plantegning
 
-<img src="./images/plantegning.png" width=600/>
+<img src="./images/plantegning.png" width=800/>
 
 ### 2.3 Mål og krav
 
@@ -109,27 +109,26 @@ for hvert rør:
     4. Velg hyllevare som er nærmest minste tverrsnitt.
     5. Regn ut rørvolum som er rørlengde * hylletverrsnitt.
 
-Summer volumet til alle rør for å finne totalvolum.
+Summer rørvolumet, rølengde og antall rør.
 ```
 
 ### 2.8 Resultat
 
 ```bash
 jonas ~/git/TSM2450-oblig1 $ python oppg2.py
-                                   Antall rør  Rørlengde [m]  Rørvolum [m2]
-        A: Trestruktur fra vest            15           74.5        10.6355
-        B: Trestruktur fra øst             15           74.5        10.6105
-        C: Trestruktur fra midten          11           71.0         8.7750
-        D: Gaffel fra vest                  9           77.5        10.1600
-
+                           Antall rør  Rørlengde [m]  Rørvolum [m2]
+A: Trestruktur fra vest            15           74.5        10.6355
+B: Trestruktur fra øst             15           74.5        10.6105
+C: Trestruktur fra midten          11           71.0         8.7750
+D: Gaffel fra vest                  9           77.5        10.1600
 ```
 
 #### 2.9 Konklusjon
 
-Resultat fra beregning fra alternativ A og B viser at det ikke har noe å si om en forsyner med luft fra øst eller vest. Begge gir eksakt samme rørlengde, samme antall rør og tilnærmet lik rørvolum, men det skal sies at østre alternativ (B) 0.2 kubikk mindre volum.
+Resultat fra beregning fra alternativ A og B viser at det ikke har noe å si om en forsyner fra øst eller vest. Begge gir eksakt samme rørlengde, samme antall rør og tilnærmet lik rørvolum, men det skal sies at østre alternativ (B) har 0.02 m3 mindre volum enn A.
 
 Alternativ C med trestruktur fra taket i midten gir klart minst rørvolum - 82% av volumet til A og B. C gir også 4 færre rør og 3.5 meter kortere rør.
 
 Alternativ D er alternativet med færrest rør, men lengst rør. Rørvolum er marginalt bedre enn A og B og mye værre enn Alternativ C.
 
-Det er enten alternativ C eller D som gir er billigst, men hvilken avhenger av om det er rørvolum, rørlengde eller antall rør som er kostnadsdriveren.
+Det er enten alternativ C eller D som blir billigst, men hvilken avhenger av om det er rørvolum, rørlengde eller antall rør som er kostnadsdriveren.
