@@ -11,27 +11,32 @@
 Pythonskript viser utregning av trykket i bunnen av tanken. Bruker ligning for hydrostatisk trykk - $\Delta P = \rho g y$
 
 ```py
+rho_vann = 1000 # kg/m3
+rho_olje = 800  # kg/m3
+H_olje   = 0.2  # m
+H_vann   = 0.8  # m
+g        = 9.81 # m/s**2
 
+P_atmosfære = 101_000 # Pa
+P_olje      = rho_olje * g * H_olje
+P_vann      = rho_vann * g * H_vann
+
+P_over = P_olje + P_vann
+P_abs  = P_olje + P_vann + P_atmosfære
 ```
 
-#### 1.2 Demo av skript
+#### Demo av skript
 
 ```bash
 jonas@pop-os:~/git/TSM2450-termo-og-fluid$ python oppg1.py
 
-    Oppg1:
+    Oppg1 svar:
 
-    Det skal kjøpes en olje/vann-separator lik den i bildet under. Det blå er vann (i bunn) og det beige er olje. Fra nær bunn går det ett rør oppover til å se nivået i tanken.
-
-        a) Dersom oljen har en tetthet på 800 kg/m3 og har en høyde på 20cm, hva er da trykket i bunn av tanken om trykket i gassen i toppen er atmosfærisk?
-
-
-        Svar:
-          P_atmos =   101000.0 Pa
-          P_olje  =     1569.6 Pa
-          P_vann  =     7848.0 Pa
-          P_over  =     9417.6 Pa
-          P_abs   =   110417.6 Pa
+        P_atmos =   101000.0 Pa
+        P_olje  =     1569.6 Pa
+        P_vann  =     7848.0 Pa
+        P_over  =     9417.6 Pa
+        P_abs   =   110417.6 Pa
 ```
 
 ## 2. Ventilasjon av klasserom
@@ -125,10 +130,10 @@ D: Gaffel fra vest                  9           77.5        10.1600
 
 #### 2.9 Konklusjon
 
-Resultat fra beregning fra alternativ A og B viser at det ikke har noe å si om en forsyner fra øst eller vest. Begge gir eksakt samme rørlengde, samme antall rør og tilnærmet lik rørvolum, men det skal sies at østre alternativ (B) har 0.02 m3 mindre volum enn A.
+Resultat fra beregning av alternativ A og B, viser at det ikke har noe å si om en forsyner fra øst eller vest. Begge gir eksakt samme rørlengde, samme antall rør og tilnærmet lik rørvolum, men det skal sies at østre alternativ (B) har 0.02 m3 mindre volum enn A.
 
-Alternativ C med trestruktur fra taket i midten gir klart minst rørvolum - 82% av volumet til A og B. C gir også 4 færre rør og 3.5 meter kortere rør.
+Alternativ C med trestruktur fra taket i midten, gir klart minst rørvolum - 82% av A og B. C gir også 4 færre rør og 3.5 meter kortere total rørlengde.
 
-Alternativ D er alternativet med færrest rør, men lengst rør. Rørvolum er marginalt bedre enn A og B og mye værre enn Alternativ C.
+Alternativ D er alternativet med færrest rør, men lengst total rørlengde. Rørvolum er midt i mellom - 95% av A og B og 115% av C.
 
-Det er enten alternativ C eller D som blir billigst, men hvilken avhenger av om det er rørvolum, rørlengde eller antall rør som er kostnadsdriveren.
+Mest sannsynlig er det alternativ C eller D som blir billigst. Hvilken av de to avhenger av, om det er rørvolum, rørlengde eller antall rør som er kostnadsdriveren.

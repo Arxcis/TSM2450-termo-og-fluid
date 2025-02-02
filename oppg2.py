@@ -27,7 +27,7 @@ class Rør:
 
 
 def beregn_total(røra):
-    """Stiller inn rør, beregner alle verdier og skriver til skjerm"""
+    """Beregner og returnerer total rørlengde, rørvolum og antall rør"""
     #
     # 1. Innstillinger
     #
@@ -61,7 +61,7 @@ def beregn_total(røra):
         
         # 2.5. Regn ut rørvolum som rørlengde * hylletverrsnitt.
         rør.volum = rør.A_hylle * rør.lengde
-
+    
     lengde = sum([rør.lengde for rør in røra])             # m
     volum  = sum([rør.lengde*rør.A_hylle for rør in røra]) # m3
     antall = len(røra)
