@@ -43,11 +43,11 @@ jonas@pop-os:~/git/TSM2450-termo-og-fluid$ python oppg1.py
 
 Vil røret for å se nivået fungere, dersom oljelaget kan variere? Dersom en ikke vet tykkelsen på olja?
 
-![alt text](image.png)
+![alt text](./images/oppg1b-oljevannseparator.png)
 
 Svar: Nei. Det blir en ligning med uendelig mange løsninger. Uendelig mange kombinasjoner av høyder på oljelaget og vannlaget kan forklare en bestemt måling. Dermed er dette et dårlig måleprinsipp.
 
-![alt text](./images/oppg1b.png)
+![alt text](./images/oppg1b-forklaring.png)
 
 ## 2. Ventilasjon av klasserom
 
