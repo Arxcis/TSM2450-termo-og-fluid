@@ -54,7 +54,8 @@ Det stilles 4 krav:
 ### 2.4 Hyllevarer
 
 En liste med hyllevarer er oppgitt med ulike tverrsnitt på rør, men ikke prisen. Det er fra denne tabellen at et utvalg av rør skal velges og konfigureres på en måte som tilfredstiller kravene til ventilasjon.
-<img src="./images/rørtabell.png" width=400/>
+
+<img src="./images/rørtabell.png" width=500/>
 
 ### 2.5 Rørvolum
 
@@ -98,7 +99,7 @@ Sammenligningstabell:
 
 | Alternativ         | Lengde | Volum |
 | ------------------ | ------ | ----- |
-| A: tre fra vest    | ?      | ?     |
+| A: Tre fra vest    | ?      | ?     |
 | B: Tre fra øst     | ?      | ?     |
 | C: Tre fra midt    | ?      | ?     |
 | D: Gaffel fra vest | ?      | ?     |
@@ -109,7 +110,7 @@ Krav til luftstrøm per pers settes til 26 m3/t og det er krav til at en skal ti
 
 ### 2.8 Valg av rør
 
-Rør er hyllevare. Beregningene gir et minste tverrsnitt for å tilfredstille krav til v_max og Q_per_pers_per_sekund.
+Beregningene gir et minste tverrsnitt for å tilfredstille krav til v_max og Q_per_pers_per_sekund.
 
 ```math
  A_{minste} =  \frac{Q_{inn}}{v_{max}}
@@ -120,11 +121,28 @@ Da gjelder det å finne en hyllevare som er større, men så nærmt som mulig mi
 Python-funksjon viser hvordan rør velges fra tabell:
 
 ```py
+HYLLE = [
+    0.003, # m2
+    0.005,
+    0.008,
+    0.012,
+    0.020,
+    0.031,
+    0.049,
+    0.078,
+    0.126,
+    0.196,
+    0.312,
+    0.503,
+    0.785,
+    1.227,
+    2.011,
+]
+
 def velg_hylletvare(A_min: float):
     """
     A_min: float - minsteverdi for ønske av rør. Velger tilsvarende rør eller nærmeste rør som er større enn denne verdien.
     """
-
     for i, A_hylle in enumerate(sorted(HYLLE)):
         if A_min < A_hylle:
             return A_hylle, None
@@ -134,12 +152,12 @@ def velg_hylletvare(A_min: float):
 
 ### 2.9 Resultater
 
-| Alternativ         | Lengde | Volum |
-| ------------------ | ------ | ----- |
-| A: tre fra vest    | ?      | ?     |
-| B: Tre fra øst     | ?      | ?     |
-| C: Tre fra midt    | ?      | ?     |
-| D: Gaffel fra vest | ?      | ?     |
+| Alternativ         | Totallengde | Totalvolum |
+| ------------------ | ----------- | ---------- |
+| A: tre fra vest    | ?           | ?          |
+| B: Tre fra øst     | ?           | ?          |
+| C: Tre fra midt    | ?           | ?          |
+| D: Gaffel fra vest | ?           | ?          |
 
 ### 2.10 Demo av skript
 
