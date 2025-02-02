@@ -54,7 +54,7 @@ Det stilles 4 krav:
 ### 2.4 Hyllevarer
 
 En liste med hyllevarer er oppgitt med ulike tverrsnitt på rør, men ikke prisen. Det er fra denne tabellen at et utvalg av rør skal velges og konfigureres på en måte som tilfredstiller kravene til ventilasjon.
-![alt text](./images/rørtabell.png)
+<img src="./images/rørtabell.png" width=400/>
 
 ### 2.5 Rørvolum
 
@@ -78,13 +78,20 @@ for rør in røra:
 
 Ønsker å sammenligne 4 ulike konfigurasjoner, for å finne ut hvilken som gir lavest rørvolum.
 
-**Alternativ A: Trestruktur inn fra vest**
+#### Alternativ A: Trestruktur inn fra vest
+
 ![alt text](./images/tre-inn-fra-vest.png)
-**Alternativ B: Trestruktur inn fra øst**
+
+#### Alternativ B: Trestruktur inn fra øst
+
 ![alt text](./images/tre-inn-fra-øst.png)
-**Alternativ C: Trestruktur inn fra tak i midten**
+
+#### Alternativ C: Trestruktur inn fra tak i midten
+
 ![alt text](./images/tre-inn-fra-tak-i-midten.png)
-**Alternativ D: Gaffel inn fra vest**
+
+#### Alternativ D: Gaffel inn fra vest
+
 ![alt text](./images/gaffel-inn-fra-vest.png)
 
 Sammenligningstabell:
