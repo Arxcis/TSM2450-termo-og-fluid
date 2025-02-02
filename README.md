@@ -43,19 +43,15 @@ jonas@pop-os:~/git/TSM2450-termo-og-fluid$ python oppg1.py
 
 Vil røret for å se nivået fungere, dersom oljelaget kan variere? Dersom en ikke vet tykkelsen på olja?
 
-![alt text](./images/oppg1b-oljevannseparator.png)
+![Olje/vann-separator](./images/oppg1b-oljevannseparator.png)
 
 Svar: Nei. Det blir en ligning med uendelig mange løsninger. Uendelig mange kombinasjoner av høyder på oljelaget og vannlaget kan forklare en bestemt måling. Dermed er dette et dårlig måleprinsipp.
 
-![alt text](./images/oppg1b-forklaring.png)
+![Forklaring svar oppg1b](./images/oppg1b-forklaring.png)
 
 ## 2. Ventilasjon av klasserom
 
-### 2.1 Plantegning
-
-<img src="./images/plantegning.png" width=800/>
-
-### 2.3 Mål og krav
+### 2.1 Mål og krav
 
 Ønsker å finne ut hvilken konfigurasjon av rør som gir lavest totalpris på ventilasjonsanlegget
 
@@ -66,21 +62,21 @@ Det stilles 4 krav:
 3. Nominell persontetthet: $Persontetthet = 0.7pers/m^2$
 4. Det skal brukes hyllevarer.
 
-### 2.4 Hyllevarer
+### 2.2 Hyllevarer
 
 En liste med hyllevarer er oppgitt med ulike tverrsnitt på rør, men ikke prisen. Det er fra denne tabellen at et utvalg av rør skal velges og konfigureres på en måte som tilfredstiller kravene til ventilasjon.
 
 <img src="./images/rørtabell.png" width=500/>
 
-### 2.5 Rørvolum
+### 2.3 Rørvolum
 
 Det antas at det totale rørvolumet, vil være proporsjonal med prisen. Dermed blir målet å finne det lavest totale rørvolumet.
 
 Total rørvolum defineres til å være:
 
-```math
+$$
     Total \ volum = \sum_{i}^{n}Rør_{i,volum} = \sum_{i}^{n}Rør_{i,lengde} \cdot Rør_{i,tverrsnitt}
-```
+$$
 
 Her er en pseudokode i python:
 
@@ -90,25 +86,25 @@ for rør in røra:
     total_volum += rør.lengde * rør.tverrsnitt
 ```
 
-### 2.6 Alternativer for konfigurasjon av rør
+### 2.4 Alternativer for konfigurasjon av rør
 
 Ønsker å sammenligne 4 ulike konfigurasjoner, for å finne ut hvilken som gir lavest rørvolum.
 
 #### Alternativ A: Trestruktur inn fra vest
 
-![alt text](./images/tre-inn-fra-vest.png)
+![Alternativ A: Trestruktur inn fra vest](./images/tre-inn-fra-vest.png)
 
 #### Alternativ B: Trestruktur inn fra øst
 
-![alt text](./images/tre-inn-fra-øst.png)
+![Alternativ B: Trestruktur inn fra øst](./images/tre-inn-fra-øst.png)
 
 #### Alternativ C: Trestruktur inn fra tak i midten
 
-![alt text](./images/tre-inn-fra-tak-i-midten.png)
+![Alternativ C: Trestruktur inn fra tak i midten](./images/tre-inn-fra-tak-i-midten.png)
 
 #### Alternativ D: Gaffel inn fra vest
 
-![alt text](./images/gaffel-inn-fra-vest.png)
+![Alternativ D: Gaffel inn fra vest](./images/gaffel-inn-fra-vest.png)
 
 ### 2.7 Metode
 
