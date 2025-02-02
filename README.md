@@ -88,18 +88,19 @@ for rør in røra:
 ![alt text](./images/gaffel-inn-fra-vest.png)
 
 Sammenligningstabell:
-| Alternativ | Lengde | Volum |
-|------------|--------|-------|
-| A: tre fra vest | ?|?|
-| B: Tre fra øst | ?|?|
-| C: Tre fra midt | ?|?|
-| D: Gaffel fra vest ?|?|
 
-### 2.2 Beregning av Q_inn
+| Alternativ         | Lengde | Volum |
+| ------------------ | ------ | ----- |
+| A: tre fra vest    | ?      | ?     |
+| B: Tre fra øst     | ?      | ?     |
+| C: Tre fra midt    | ?      | ?     |
+| D: Gaffel fra vest | ?      | ?     |
+
+### 2.7 Beregning av Q_inn
 
 Krav til luftstrøm per pers settes til 26 m3/t og det er krav til at en skal tilby luft til 0.7personer per m2. På et romareal på 630m2 gir det oss 441 personer. 441 personer trenger (26 \* 441) m3/t = 11 466 m3/t eller 11 466 m3/t / 3600 s/t = 3.185 m3/s.
 
-### 2.3 Valg av rør
+### 2.8 Valg av rør
 
 Rør er hyllevare. Beregningene gir et minste tverrsnitt for å tilfredstille krav til v_max og Q_per_pers_per_sekund.
 
@@ -107,15 +108,33 @@ Rør er hyllevare. Beregningene gir et minste tverrsnitt for å tilfredstille kr
  A_{minste} =  \frac{Q_{inn}}{v_{max}}
 ```
 
-Da gjelder det å finne en hyllevare som er større, men så nærmt som mulig minste tverrsnitt. Tabell viser alternative rør:
+Da gjelder det å finne en hyllevare som er større, men så nærmt som mulig minste tverrsnitt.
 
-<sett inn tabell>
+Python-funksjon viser hvordan rør velges fra tabell:
 
-Kode viser hvordan rør velges fra tabell:
+```py
+def velg_hylletvare(A_min: float):
+    """
+    A_min: float - minsteverdi for ønske av rør. Velger tilsvarende rør eller nærmeste rør som er større enn denne verdien.
+    """
 
-<sett inn kode>
+    for i, A_hylle in enumerate(sorted(HYLLE)):
+        if A_min < A_hylle:
+            return A_hylle, None
 
-### 2.4 Demo av skript
+    return None, f"Fant ingen hyllevare som har stort nok tverrsnitt til: {A_min} m2"
+```
+
+### 2.9 Resultater
+
+| Alternativ         | Lengde | Volum |
+| ------------------ | ------ | ----- |
+| A: tre fra vest    | ?      | ?     |
+| B: Tre fra øst     | ?      | ?     |
+| C: Tre fra midt    | ?      | ?     |
+| D: Gaffel fra vest | ?      | ?     |
+
+### 2.10 Demo av skript
 
 ```bash
 jonas ~/git/TSM2450-oblig1 $ python oppg2.py

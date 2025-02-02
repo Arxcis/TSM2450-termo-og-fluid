@@ -62,7 +62,7 @@ def oppg2():
         rør.Q = Q_luft_pers_per_sekund * rør.personer
         rør.A_min = rør.Q / V_max
         
-        A_hylle, err = velg_hylletverrsnitt(rør.A_min)
+        A_hylle, err = velg_hyllevare(rør.A_min)
         if err:
             print(f"Feil med {rør.navn}: ", err)
             exit(1)
@@ -139,7 +139,7 @@ HYLLE = [
     2.011,
 ]    
 
-def velg_hylletverrsnitt(A_min: float):
+def velg_hyllevare(A_min: float):
     """
     A_min: float - minsteverdi for ønske av rør. Velger tilsvarende rør eller nærmeste rør som er større enn denne verdien.
     """
