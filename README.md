@@ -6,7 +6,7 @@
 
 ## 1. Olje/vann-separator
 
-### 1.1 Trykk i bunn av tanken
+### Oppg1 a) Trykk i bunn av tanken
 
 Pythonskript viser utregning av trykket i bunnen av tanken. Bruker ligning for hydrostatisk trykk - $\Delta P = \rho g y$
 
