@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """
-TSM2450 Oblig 1
-Oppgave: 2
-Studentnr: 267431@usn.no 
+------------------------------------------------------------------------------
+TSM2450:   Oblig 1 Oppg2 - Ventilasjonsanlegg
+Student:  Jonas (267431@usn.no)
+------------------------------------------------------------------------------
 """
 
 from dataclasses import dataclass
@@ -22,11 +23,10 @@ class Rør:
     Q: float       = None # m3/s - volumflyt gitt av antall personer
     A_min: float   = None # m2   - minste tverrsnitt gitt av Q
     A_hylle: float = None # m2   - hylletverrsnitt gitt av minste tverrsnitt
-    v_hylle: float = None # m/s  - fart gitt av hylletverrsnitt  
     volum: float   = None # m3   - volum gitt av lengde og hylletverrsnitt
 
 
-def oppg2():
+def beregn_total(røra):
     """Stiller inn rør, beregner alle verdier og skriver til skjerm"""
     #
     # 1. Innstillinger
@@ -34,92 +34,45 @@ def oppg2():
     Persontetthet   = 0.7 # person/m2
     Q_luft_pers_per_time = 26  # m3/t
     V_max                = 10  # m/s
-
-    Røra = [
-        Rør(navn="hoved",      lengde=1.5,  areal=160+80+80+80+80+70+40+40),
-
-        Rør(navn="vestre",     lengde=15.0, areal=160+80+80),
-        Rør(navn="vestre 160", lengde=5.0,  areal=160),
-        Rør(navn="vestre 80",  lengde=5.0,  areal=80),
-        Rør(navn="vestre 80",  lengde=5.0,  areal=80),
-        
-        Rør(navn="østre",    lengde=15.0, areal=80+80+70+40+40),
-        Rør(navn="østre 80", lengde=5.0,  areal=80),
-        Rør(navn="østre 80", lengde=5.0,  areal=80),
-        Rør(navn="østre 70", lengde=4.5,  areal=70),
-        Rør(navn="østre 40", lengde=5.0,  areal=40),
-    ]
+    Q_luft_pers_per_sekund = Q_luft_pers_per_time / 3600  # m3/pers/s
 
     #
     # 2. Beregninger
-    #
-    Q_luft_pers_per_sekund = Q_luft_pers_per_time / 3600  # m3/pers/s
-    
+    #    
     from math import ceil
 
-    for rør in Røra:
+    for rør in røra:
+        # 2.1 Regn ut antall personer som røret skal føre luft til.
         rør.personer = ceil(rør.areal * Persontetthet)
+
+        # 2.2 Regn ut Q som røret må ha, for å forsyne antall personer.
         rør.Q = Q_luft_pers_per_sekund * rør.personer
+        
+        # 2.3. Regn ut minste tverrsnitt som røret må ha for å forsyne Q.
         rør.A_min = rør.Q / V_max
         
-        A_hylle, err = velg_hyllevare(rør.A_min)
-        if err:
-            print(f"Feil med {rør.navn}: ", err)
+        # 2.4. Velg hyllevare som er nærmest minste tverrsnitt.
+        A_hylle, error = velg_hyllevare(rør.A_min)
+        if error:
+            print(f"Feil med {rør.navn}: ", error)
             exit(1)
 
         rør.A_hylle = A_hylle
-        rør.v_hylle = rør.Q / rør.A_hylle
+        
+        # 2.5. Regn ut rørvolum som rørlengde * hylletverrsnitt.
         rør.volum = rør.A_hylle * rør.lengde
 
-    areal = Røra[0].areal
-    personer = Røra[0].personer
-    lengde = sum([rør.lengde for rør in Røra])             # m
-    volum  = sum([rør.lengde*rør.A_hylle for rør in Røra]) # m3
+    lengde = sum([rør.lengde for rør in røra])             # m
+    volum  = sum([rør.lengde*rør.A_hylle for rør in røra]) # m3
+    antall = len(røra)
 
+    total = {
+        "lengde": lengde,
+        "volum": volum,
+        "antall": antall,
+    }
 
-    #
-    # 3. Pretty print
-    #
-    from pandas import DataFrame
-    import textwrap
-
-    print(f"""
-#
-# Oppg2 svar:
-#
-
-    Innstillinger:
-        V max           = {V_max:>8.1f} m/s
-        Q luft per time = {Q_luft_pers_per_time:>8.1f} m3/person/t
-        Persontetthet   = {Persontetthet:>8.1f} person/m2
-        """)
-
-    print(textwrap.indent(DataFrame({
-            "Lengde [m]": (rør.lengde for rør in Røra),
-            "Areal [m2]": (rør.areal for rør in Røra),
-        }, index=(rør.navn for rør in Røra)).to_string(), "        "))
-    
-
-    print(f"""
-    Beregninger:
-        Q luft per sekund = {Q_luft_pers_per_sekund:.4f} m3/person/s
-
-        Total personer  = {ceil(personer):>6} stk
-        Total romareal  = {areal:>6.2f} m2
-        Total rørlengde = {lengde:>6.2f} m
-        Total rørvolum  = {volum:>6.2f} m3
-          """)
-    
-    print(textwrap.indent(DataFrame({
-            "Personer": (rør.personer for rør in Røra),
-            "Q [m3/s]": (round(rør.Q, 3) for rør in Røra),
-            "A min [m2]": (round(rør.A_min, 3) for rør in Røra),
-            "A hylle [m2]": (round(rør.A_hylle, 3) for rør in Røra),
-            "len [m]": (round(rør.lengde, 3) for rør in Røra),
-            "volum [m3]": (round(rør.volum, 3) for rør in Røra),
-            "v hylle [m/s]": (round(rør.v_hylle, 3) for rør in Røra),
-        }, index=(rør.navn for rør in Røra)).to_string(), "        "))
-    
+    return total
 
 HYLLE = [
     0.003, # m2
@@ -143,8 +96,7 @@ def velg_hyllevare(A_min: float):
     """
     A_min: float - minsteverdi for ønske av rør. Velger tilsvarende rør eller nærmeste rør som er større enn denne verdien.
     """
-
-    for i, A_hylle in enumerate(sorted(HYLLE)):
+    for A_hylle in sorted(HYLLE):
         if A_min < A_hylle:
             return A_hylle, None
 
@@ -152,4 +104,93 @@ def velg_hyllevare(A_min: float):
 
 
 if __name__ == "__main__":
-    oppg2()
+    
+    Alternativ_A_trestruktur_inn_fra_vest = [
+        Rør(navn="fra hoved til 80", lengde=5.0,  areal=80+160+80+40+80+40+80+70),
+        Rør(navn="fra 80 til 160",   lengde=5.0,  areal=160+80+40+80+40+80+70),
+        Rør(navn="fra 160 til 80",   lengde=5.0,  areal=80+40+80+40+80+70),
+        Rør(navn="fra 80 til 40",    lengde=7.5,  areal=40+80+40+80+70),
+        Rør(navn="fra 40 til 80",    lengde=2.5,  areal=80+40+80+70),
+        Rør(navn="fra 80 til 40",    lengde=2.5,  areal=40+80+70),
+        Rør(navn="fra 40 til 70+80",    lengde=7.5,  areal=80+70),
+
+        Rør(navn="inn 80",           lengde=5.0,  areal=80),
+        Rør(navn="inn 160",          lengde=5.0,  areal=160),
+        Rør(navn="inn 80",           lengde=5.0,  areal=80),
+        Rør(navn="inn 40",           lengde=5.0,  areal=40),
+        Rør(navn="inn 80",           lengde=5.0,  areal=80),
+        Rør(navn="inn 40",           lengde=5.0,  areal=40),
+        Rør(navn="inn 80",           lengde=5.0,  areal=80),
+        Rør(navn="inn 70",           lengde=4.5,  areal=70),
+    ]
+    Alternativ_B_trestruktur_inn_fra_øst = [
+        Rør(navn="fra hoved til 70+80", lengde=5.0,  areal=80+160+80+40+80+40+80+70),
+        Rør(navn="fra 70+80 til 40",    lengde=7.5,  areal=80+160+80+40+80+40),
+        Rør(navn="fra 40 til 80",    lengde=2.5,  areal=80+160+80+40+80),
+        Rør(navn="fra 80 til 40",    lengde=2.5,  areal=80+160+80+40),
+        Rør(navn="fra 40 til 80",    lengde=7.5,  areal=80+160+80),
+        Rør(navn="fra 80 til 160",   lengde=5.0,  areal=80+160),
+        Rør(navn="fra 160 til 80",   lengde=5.0,  areal=80),
+
+        Rør(navn="inn 80",           lengde=5.0,  areal=80),
+        Rør(navn="inn 160",          lengde=5.0,  areal=160),
+        Rør(navn="inn 80",           lengde=5.0,  areal=80),
+        Rør(navn="inn 40",           lengde=5.0,  areal=40),
+        Rør(navn="inn 80",           lengde=5.0,  areal=80),
+        Rør(navn="inn 40",           lengde=5.0,  areal=40),
+        Rør(navn="inn 80",           lengde=5.0,  areal=80),
+        Rør(navn="inn 70",           lengde=4.5,  areal=70),
+    ]
+
+    Alternativ_C_trestruktur_inn_fra_midten = [
+        Rør(navn="hoved",      lengde=1.5,  areal=160+80+80+80+80+70+40+40),
+
+        Rør(navn="vestre",     lengde=15.0, areal=160+80+80),
+        Rør(navn="vestre 80",  lengde=5.0,  areal=80),
+        Rør(navn="vestre 160", lengde=5.0,  areal=160),
+        Rør(navn="vestre 80",  lengde=5.0,  areal=80),
+        
+        Rør(navn="østre",    lengde=15.0, areal=80+80+70+40+40),
+        Rør(navn="østre 40", lengde=5.0,  areal=40),
+        Rør(navn="østre 80", lengde=5.0,  areal=80),
+        Rør(navn="østre 40", lengde=5.0,  areal=40),
+        Rør(navn="østre 80", lengde=5.0,  areal=80),
+        Rør(navn="østre 70", lengde=4.5,  areal=70),
+    ]
+
+    Alternativ_D_gaffel_fra_vest = [
+        Rør(navn="inn fra vest", lengde=2.5, areal=160+80+80+80+80+70+40+40),
+        
+        Rør(navn="Nord",                lengde=12.5,  areal=80+80+160),
+        Rør(navn="Nord fra 160 til 80", lengde=15.0,  areal=80+80),
+        Rør(navn="Nord fra 80 til 80", lengde=10.0,  areal=80),
+        
+        Rør(navn="Sør",               lengde=7.5,  areal=70+40+40+80+80),
+        Rør(navn="Sør fra 80 til 80", lengde=10.0,  areal=70+40+40+80),
+        Rør(navn="Sør fra 80 til 40", lengde=7.5,  areal=70+40+40),
+        Rør(navn="Sør fra 40 til 40", lengde=5.0,  areal=70+40),
+        Rør(navn="Sør fra 40 til 70", lengde=7.5,  areal=70),
+    ]
+
+    A = beregn_total(røra=Alternativ_A_trestruktur_inn_fra_vest)
+    B = beregn_total(røra=Alternativ_B_trestruktur_inn_fra_øst)
+    C = beregn_total(røra=Alternativ_C_trestruktur_inn_fra_midten)
+    D = beregn_total(røra=Alternativ_D_gaffel_fra_vest)
+
+    alternativer = [A, B, C, D]
+
+    from pandas import DataFrame
+    import textwrap
+    
+    print(textwrap.indent(DataFrame({
+        "Antall rør": (alt["antall"] for alt in alternativer),
+        "Rørlengde [m]": (alt["lengde"] for alt in alternativer),
+        "Rørvolum [m2]": (alt["volum"] for alt in alternativer),
+    }, index=(
+        "A: Trestruktur fra vest",
+        "B: Trestruktur fra øst",
+        "C: Trestruktur fra midten",
+        "D: Gaffel fra vest",
+    )).to_string(), "        "))
+
+    

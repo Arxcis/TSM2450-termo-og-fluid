@@ -1,11 +1,11 @@
+"""
+------------------------------------------------------------------------------
+TSM2450:   Oblig 1 Oppg1 - Olje/vann-separator
+Student:  Jonas (267431@usn.no)
+------------------------------------------------------------------------------
+"""
 
 def oppg1():
-    """
-    TSM2450 Fluidmekanikk Oblig 1
-    Oppgave 1
-    
-    Studentnr: 267431@usn.no 
-    """
 
     print("""
     Oppg1:
