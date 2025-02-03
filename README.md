@@ -66,7 +66,7 @@ Det stilles 4 krav:
 
 En liste med hyllevarer er oppgitt med ulike tverrsnitt på rør, men ikke prisen. Det er fra denne tabellen at et utvalg av rør skal velges og konfigureres på en måte som tilfredstiller kravene til ventilasjon.
 
-<img src="./images/rørtabell.png" width=500/>
+![Rørtabell/hyllevare](./images/rørtabell.png)
 
 ### 2.3 Rørvolum
 
@@ -127,16 +127,16 @@ Summer rørvolumet, rølengde og antall rør.
 
 ```bash
 jonas ~/git/TSM2450-oblig1 $ python oppg2.py
-                           Antall rør  Rørlengde [m]  Rørvolum [m2]
-A: Trestruktur fra vest            15           74.5        10.6355
-B: Trestruktur fra øst             15           74.5        10.6105
-C: Trestruktur fra midten          11           71.0         8.7750
-D: Gaffel fra vest                  9           77.5        10.1600
+                           Antall rør  Rørlengde [m]  Rørvolum [m3]
+A: Trestruktur fra vest            15           74.5          10.64
+B: Trestruktur fra øst             15           74.5          10.61
+C: Trestruktur fra midten          11           71.0           8.78
+D: Gaffel fra vest                  9           77.5          10.16
 ```
 
 #### 2.9 Konklusjon
 
-Resultat fra beregning av alternativ A og B, viser at det ikke har noe å si om en forsyner fra øst eller vest. Begge gir eksakt samme rørlengde, samme antall rør og tilnærmet lik rørvolum, men det skal sies at østre alternativ (B) har 0.02 m3 mindre volum enn A.
+Resultat fra beregning av alternativ A og B, viser at det ikke har noe å si om en forsyner fra øst eller vest. Begge gir eksakt samme rørlengde, samme antall rør og tilnærmet lik rørvolum, men det skal sies at østre alternativ (B) har 0.03 m3 mindre volum enn A.
 
 Alternativ C med trestruktur fra taket i midten, gir klart minst rørvolum - 82% av A og B. C gir også 4 færre rør og 3.5 meter kortere total rørlengde.
 
