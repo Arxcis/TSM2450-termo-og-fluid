@@ -25,7 +25,7 @@ class Rør:
 
 
 def main():
-    """Regner ut rørvolum til 4 alternativer A, B, C og D og skriver til skjerm"""
+    """Regner ut totalverdier til 4 alternativer A, B, C og D og skriver til skjerm"""
 
     Alternativ_A_trestruktur_inn_fra_vest = [
         Rør(navn="fra hoved til 80", lengde=5.0,  areal=80+160+80+40+80+40+80+70),
