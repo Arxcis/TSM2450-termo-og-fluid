@@ -87,6 +87,7 @@ def hdyn(v, g):
     return v**2/(2*g)
 
 def h0sum(Ks, v, g):
+    """Mindre tap komponent for komponent"""
     return sum(Ks)*((v**2)/(2*g))
 
 if __name__ == "__main__":
