@@ -13,98 +13,20 @@ from dataclasses import dataclass
 @dataclass
 class Rør:
     """Representerer et rør som skal levere luft til et rom"""
-    # Verdier som gis
     navn: str       
     areal: float    # m2 - areal til rommet som røret skal levere til
     lengde: float   # m  - lengde til røret
 
-    # Verdier som skal beregnes
-    personer: int  = None #      - antall personer gitt av arealet til rommet
-    Q: float       = None # m3/s - volumflyt gitt av antall personer
-    A_min: float   = None # m2   - minste tverrsnitt gitt av Q
-    A_hylle: float = None # m2   - hylletverrsnitt gitt av minste tverrsnitt
-    volum: float   = None # m3   - volum gitt av lengde og hylletverrsnitt
+    personer: int  = None #      - antall personer som funksjon av arealet til rommet
+    Q: float       = None # m3/s - volumflyt som funksjon av antall personer
+    A_min: float   = None # m2   - minste tverrsnitt som funksjon av Q
+    A_hylle: float = None # m2   - hylletverrsnitt som funksjon av minste tverrsnitt
+    volum: float   = None # m3   - volum som funksjon av lengde og hylletverrsnitt
 
 
-def beregn_total(røra):
-    """Beregner og returnerer total rørlengde, rørvolum og antall rør"""
-    #
-    # 1. Innstillinger
-    #
-    Persontetthet   = 0.7 # person/m2
-    Q_luft_pers_per_time = 26  # m3/t
-    V_max                = 10  # m/s
-    Q_luft_pers_per_sekund = Q_luft_pers_per_time / 3600  # m3/pers/s
+def main():
+    """Regner ut rørvolum til 4 alternativer A, B, C og D og skriver til skjerm"""
 
-    #
-    # 2. Beregninger
-    #    
-    from math import ceil
-
-    for rør in røra:
-        # 2.1 Regn ut antall personer som røret skal føre luft til.
-        rør.personer = ceil(rør.areal * Persontetthet)
-
-        # 2.2 Regn ut Q som røret må ha, for å forsyne antall personer.
-        rør.Q = Q_luft_pers_per_sekund * rør.personer
-        
-        # 2.3. Regn ut minste tverrsnitt som røret må ha for å forsyne Q.
-        rør.A_min = rør.Q / V_max
-        
-        # 2.4. Velg hyllevare som er nærmest minste tverrsnitt.
-        A_hylle, error = velg_hyllevare(rør.A_min)
-        if error:
-            print(f"Feil med {rør.navn}: ", error)
-            exit(1)
-
-        rør.A_hylle = A_hylle
-        
-        # 2.5. Regn ut rørvolum som rørlengde * hylletverrsnitt.
-        rør.volum = rør.A_hylle * rør.lengde
-    
-    lengde = sum([rør.lengde for rør in røra])             # m
-    volum  = sum([rør.lengde*rør.A_hylle for rør in røra]) # m3
-    antall = len(røra)
-
-    total = {
-        "lengde": lengde,
-        "volum": volum,
-        "antall": antall,
-    }
-
-    return total
-
-HYLLE = [
-    0.003, # m2
-    0.005,
-    0.008,
-    0.012,
-    0.020,
-    0.031,
-    0.049,
-    0.078,
-    0.126,
-    0.196,
-    0.312,
-    0.503,
-    0.785,
-    1.227,
-    2.011,
-]    
-
-def velg_hyllevare(A_min: float):
-    """
-    A_min: float - minsteverdi for ønske av rør. Velger tilsvarende rør eller nærmeste rør som er større enn denne verdien.
-    """
-    for A_hylle in sorted(HYLLE):
-        if A_min < A_hylle:
-            return A_hylle, None
-
-    return None, f"Fant ingen varer som har stort nok tverrsnitt til: {A_min} m2"
-
-
-if __name__ == "__main__":
-    
     Alternativ_A_trestruktur_inn_fra_vest = [
         Rør(navn="fra hoved til 80", lengde=5.0,  areal=80+160+80+40+80+40+80+70),
         Rør(navn="fra 80 til 160",   lengde=5.0,  areal=160+80+40+80+40+80+70),
@@ -123,6 +45,7 @@ if __name__ == "__main__":
         Rør(navn="inn 80",           lengde=5.0,  areal=80),
         Rør(navn="inn 70",           lengde=4.5,  areal=70),
     ]
+
     Alternativ_B_trestruktur_inn_fra_øst = [
         Rør(navn="fra hoved til 70+80", lengde=5.0,  areal=80+160+80+40+80+40+80+70),
         Rør(navn="fra 70+80 til 40",    lengde=7.5,  areal=80+160+80+40+80+40),
@@ -177,14 +100,14 @@ if __name__ == "__main__":
     C = beregn_total(røra=Alternativ_C_trestruktur_inn_fra_midten)
     D = beregn_total(røra=Alternativ_D_gaffel_fra_vest)
 
-    alternativer = [A, B, C, D]
+    resultater = [A, B, C, D]
 
     from pandas import DataFrame
     
     print(DataFrame({
-        "Antall rør": (alt["antall"] for alt in alternativer),
-        "Rørlengde [m]": (alt["lengde"] for alt in alternativer),
-        "Rørvolum [m2]": (alt["volum"] for alt in alternativer),
+        "Antall rør": (res["antall"] for res in resultater),
+        "Rørlengde [m]": (res["lengde"] for res in resultater),
+        "Rørvolum [m2]": (res["volum"] for res in resultater),
     }, index=(
         "A: Trestruktur fra vest",
         "B: Trestruktur fra øst",
@@ -193,3 +116,82 @@ if __name__ == "__main__":
     )))
 
     
+def beregn_total(røra):
+    """Beregner og returnerer total rørlengde, rørvolum og antall rør"""
+    #
+    # 1. Innstillinger
+    #
+    Persontetthet          = 0.7 # person/m2
+    Q_luft_pers_per_time   = 26  # m3/t
+    V_max                  = 10  # m/s
+    Q_luft_pers_per_sekund = Q_luft_pers_per_time / 3600  # m3/pers/s
+
+    #
+    # 2. Beregninger
+    #    
+    from math import ceil
+
+    for rør in røra:
+        # 2.1 Regn ut antall personer som røret skal føre luft til.
+        rør.personer = ceil(rør.areal * Persontetthet)
+
+        # 2.2 Regn ut Q som røret må ha, for å forsyne antall personer.
+        rør.Q = Q_luft_pers_per_sekund * rør.personer
+        
+        # 2.3. Regn ut minste tverrsnitt som røret må ha for å forsyne Q.
+        rør.A_min = rør.Q / V_max
+        
+        # 2.4. Velg hyllevare som er nærmest minste tverrsnitt.
+        A_hylle, error = velg_hyllevare(rør.A_min)
+        if error:
+            print(f"Feil med {rør.navn}: ", error)
+            exit(1)
+
+        rør.A_hylle = A_hylle
+        
+        # 2.5. Regn ut rørvolum som rørlengde * hylletverrsnitt.
+        rør.volum = rør.A_hylle * rør.lengde
+    
+    lengde = sum([rør.lengde for rør in røra])             # m
+    volum  = sum([rør.lengde*rør.A_hylle for rør in røra]) # m3
+    antall = len(røra)
+
+    total = {
+        "lengde": lengde,
+        "volum": volum,
+        "antall": antall,
+    }
+
+    return total
+
+def velg_hyllevare(A_min: float):
+    """
+    A_min: float - minsteverdi for ønske av rør. Velger tilsvarende rør eller nærmeste rør som er større enn denne verdien.
+    """
+    HYLLE = [
+        0.003, # m2
+        0.005,
+        0.008,
+        0.012,
+        0.020,
+        0.031,
+        0.049,
+        0.078,
+        0.126,
+        0.196,
+        0.312,
+        0.503,
+        0.785,
+        1.227,
+        2.011,
+    ]
+
+    for A_hylle in sorted(HYLLE):
+        if A_min < A_hylle:
+            return A_hylle, None
+
+    return None, f"Fant ingen varer som har stort nok tverrsnitt til: {A_min} m2"
+
+
+if __name__ == "__main__":
+    main()

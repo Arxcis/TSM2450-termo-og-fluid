@@ -5,7 +5,7 @@ Student:  Jonas (267431@usn.no)
 ------------------------------------------------------------------------------
 """
 
-def oppg1():
+def main():
     rho_vann = 1000 # kg/m3
     rho_olje = 800  # kg/m3
     H_olje = 0.2  # m
@@ -32,4 +32,4 @@ def oppg1():
 
 
 if __name__ == "__main__":
-    oppg1()
+    main()
