@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 """
 ------------------------------------------------------------------------------
 TSM2450:   Oblig 1 Oppg2 - Ventilasjonsanlegg
