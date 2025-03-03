@@ -58,7 +58,7 @@ def finn_pumpemeter(Q_volumstrøm: float | ndarray, Δhp_statiskmeter: float):
     K_sete        = 10.0 # K-faktor for "Globe valve" fra diagram 10.2 i boka
     L_rørlengdemeter = 50
 
-    A_rørtverrsnitt = (pi/4)*D_rørdiameter
+    A_rørtverrsnitt = (pi/4)*D_rørdiameter**2
     v_fluidmeter_sekund = Q_volumstrøm / A_rørtverrsnitt
 
     f_rør = f_rørfriksjonskoeffisent(
