@@ -3,7 +3,7 @@
 - Student: Jonas
 - Emne: Termo- og fluidmekanikk
 - Tid: Vår 2025 USN Porsgrunn
-- Repo: [https://github.com/Arxcis/TSM2450-oblig1](https://github.com/Arxcis/TSM2450-termo-og-fluid)
+- Repo: [https://github.com/Arxcis/TSM2450-termo-og-fluid/oblig2](https://github.com/Arxcis/TSM2450-termo-og-fluid/tree/main/oblig2)
 
 ## Oppg1)
 
