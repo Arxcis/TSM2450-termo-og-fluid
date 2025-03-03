@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/89344a52-a58a-43de-a8ca-e66402997856)# TSM2450 Oblig 2
+# TSM2450 Oblig 2
 
 - Emne: Termo- og fluidmekanikk
 - Tid: Vår 2025 USN Porsgrunn
@@ -104,7 +104,7 @@ effekt:  [ 1980.89905577  6533.63149159 12528.25180008  4140.13608357] [Watt]
 
 ### Diskusjon 1a)
 
-Resultatet viser en tydelig lineær kobling mellom ønsket volumstrøm og påkrevd pumpeeffekt.
+Resultatet viser en tydelig lineær kobling mellom ønsket volumstrøm og påkrevd pumpeeffekt. Ved den minste volumstrømmen holder det med en pumpe som kan levere 2000 watt. Under den høyeste volumstrømmen kreves en pumpe godt over 12 000 watt.
 
 ### Diskusjon 1b)
 
