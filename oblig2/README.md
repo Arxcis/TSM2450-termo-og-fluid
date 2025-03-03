@@ -4,23 +4,24 @@
 - Tid: Vår 2025 USN Porsgrunn
 - Repo: [https://github.com/Arxcis/TSM2450-oblig1](https://github.com/Arxcis/TSM2450-termo-og-fluid)
 
-
 ## Oppg1)
 
 ### Mål
+
 Finne hvilket trykk, volumstrøm og effekt pumpen må ha, for tre dyser med ulike dysestrømningsfaktorer (K_dysestrømning) og konstant overtrykk.
 
 ### Forutsetninger:
-* K_dysestrømning: 17, 56, 107
-* Ønsket overtrykk ved dyse: 7.0 bar
-* Diameter på alle rør: 50mm
-* Ruheten på alle rør: 0.50mm
-* Lengde på alle rør: 50 meter
-* Rørstrekket inneholder 4 albuer og 1 seteventil
-  * K-faktor albue: 0.9 (fra tabell 10.2)
-  * K-faktor seteventil: 10 (fra tabell 10.2)
-* Trykket på toppen av tanken: 1atm eller 0 overtrykk
-* Høydeforskjell mellom toppen av tank og dyse: 13 meter
+
+- K_dysestrømning: 17, 56, 107
+- Ønsket overtrykk ved dyse: 7.0 bar
+- Diameter på alle rør: 50mm
+- Ruheten på alle rør: 0.50mm
+- Lengde på alle rør: 50 meter
+- Rørstrekket inneholder 4 albuer og 1 seteventil
+  - K-faktor albue: 0.9 (fra tabell 10.2)
+  - K-faktor seteventil: 10 (fra tabell 10.2)
+- Trykket på toppen av tanken: 1atm eller 0 overtrykk
+- Høydeforskjell mellom toppen av tank og dyse: 13 meter
 
 ![image](./bilder/oblig2-oppg1.png)
 
@@ -31,6 +32,7 @@ Finne hvilket trykk, volumstrøm og effekt pumpen må ha, for tre dyser med ulik
 $$
 Q  [dm3/min] = K_{dyestrømning=17,56,107} \cdot \sqrt{7.0 [bar]}
 $$
+
 $$
 Q  [m^3/s] = \frac{Q [dm^3/min]}{1000 \cdot 60}
 $$
@@ -42,17 +44,16 @@ v_{snitt} [m/s] = \frac{Q [m^3/s]}{A_{rørtverrsnitt} [m^2]} = \frac{Q [m^3/s]}{
 $$
 
 3. hdyn regnes ut.
-   
+
 $$
 h_{dyn} = \frac{v_{snitt}^2}{2 \cdot g}
 $$
 
 5. hf regnes ut for røret.
-   
+
 $$
 hf_{rør} = f_{rør} \cdot \frac{L_{rør}}{D_{rør}} \cdot h_{dyn}
 $$
-
 
 7. h0 regnes ut for albue.
 
@@ -71,7 +72,7 @@ $$
 $$
 hp = \Delta Z + \Delta h_{statisk} + \Delta h_{dynamisk} + hf_{rør} + h0_{sete} + 4 \cdot h0_{albue}
 $$
-   
+
 ```py
    hp_pumpemeter = ΔZ_forskjellmeter\
                  + Δhstat_statiskmeter\
@@ -88,6 +89,7 @@ P = \rho g Q h_{pumpe}
 $$
 
 ### Resultat
+
 ```sh
 oppg1.py  oppg2.py  README.md
 (.venv) jonas@pop-os:~/git/TSM2450-termo-og-fluid/oblig2$ python oppg1.py
@@ -98,11 +100,16 @@ pumpetrykk:  [8.27656552 8.28711457 8.31655435 8.28027217] [Bar]
 effekt:  [ 1980.89905577  6533.63149159 12528.25180008  4140.13608357] [Watt]
 ```
 
-### Diskusjon
-
 ![Plot av volumstrøm mot effekt](./bilder/plot-volumstrøm-mot-effekt.png)
 
-## Oppg1b)
+### Diskusjon 1a)
 
+Resultatet viser en tydelig lineær kobling mellom ønsket volumstrøm og påkrevd pumpeeffekt.
+
+### Diskusjon 1b)
+
+I oppg1b) foreslår RMG-engineering en pumpe med volumstrøm på 0.005 [m3/s] og en pumpeeffekt på 3800 [Watt]. Om en plotter ønsket volumstrøm på den lineære modellen fra resultatet, ser man at pumpen ikke vil fungere da den er for svak. Q = 0.005 vil nemlig kreve over 4000 [Watt] fra pumpa for å kunne opprettholde ønsket trykk på 7.0bar ved dyse.
+
+![Plot av volumstrøm mot effekt](./bilder/plot-volumstrøm-mot-effekt-oppg1b.png)
 
 ## Oppg2
