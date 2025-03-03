@@ -6,3 +6,9 @@
 
 ## Oppg1a)
 ![image](./bilder/oblig2-oppg1.png)
+
+
+## Oppg1b)
+
+
+## Oppg2
