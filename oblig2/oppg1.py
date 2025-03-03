@@ -24,8 +24,8 @@ def main():
     dysefaktor = array([17, 56, 107])
 
     # Beregninger
-    volumstrøm = finn_dysestrøm(dysefaktor, Δhp_statiskmeter) # Oppg1a)
-    volumstrøm = append(volumstrøm, 5e-3)                     # Append for oppg1b)
+    volumstrøm = finn_dysestrøm(dysefaktor, Δhp_statiskbar) # 3 dyser i Oppg1a)
+    volumstrøm = append(volumstrøm, 5e-3)                   # 1 pumpe i oppg1b)
     pumpemeter = finn_pumpemeter(volumstrøm, Δhp_statiskmeter)
     effekt     = finn_pumpeeffekt(volumstrøm, pumpemeter)
 
@@ -37,10 +37,10 @@ def main():
     print("effekt: ", effekt, "[Watt]")
 
 
-def finn_dysestrøm(dysefaktor: float | ndarray, Δhp_statiskmeter: float):
-    """Finner volumstrømmen i kubikkmeter/sekund, for en gitt dysefaktor og ønsket statisk trykkøkning i meter"""
+def finn_dysestrøm(dysefaktor: float | ndarray, Δhp_statiskbar: float):
+    """Finner volumstrømmen i kubikkmeter/sekund, for en gitt dysefaktor og ønsket statisk trykkøkning i bar"""
 
-    Q_volumstrømliter_min = dysefaktor * (Δhp_statiskmeter)**0.5
+    Q_volumstrømliter_min = dysefaktor * (Δhp_statiskbar)**0.5
     Q_volumstrøm = Q_volumstrømliter_min / (LITER_M3 * SEKUND_MINUTT)
 
     return Q_volumstrøm
@@ -54,21 +54,20 @@ def finn_pumpemeter(Q_volumstrøm: float | ndarray, Δhp_statiskmeter: float):
     ε_ruhetmeter  = 0.0005
     D_rørdiameter = 0.050
     ΔZ_høydemeter = 13.0
-    K_albue       = 0.9 # K-faktor for "90 degree elbow" fra diagram 10.2 i boka
+    K_albue       = 0.9  # K-faktor for "90 degree elbow" fra diagram 10.2 i boka
     K_sete        = 10.0 # K-faktor for "Globe valve" fra diagram 10.2 i boka
     L_rørlengdemeter = 50
-    Δhp_statiskmeter = (7.0e5*METER_PASCAL - 0) # <- Antar 0Pa overtrykk ved innløpet/toppen av tanken.
-   
+
     A_rørtverrsnitt = (pi/4)*D_rørdiameter
     v_fluidmeter_sekund = Q_volumstrøm / A_rørtverrsnitt
-    
+
     f_rør = f_rørfriksjonskoeffisent(
         ρ=ρ_vanntetthet,
         μ=μ_vannviskositet,
         v=v_fluidmeter_sekund,
         d=D_rørdiameter,
         ε=ε_ruhetmeter,
-    ) 
+    )
 
     Δhdyn_dynamiskmeter = (v_fluidmeter_sekund**2/(2*g)) - 0 # <- Antar ~ 0m/s ved toppen av tanken.
     hf_rørtapmeter      = f_rør   * Δhdyn_dynamiskmeter * (L_rørlengdemeter/D_rørdiameter) 
@@ -92,7 +91,6 @@ def finn_pumpeeffekt(Q_volumstrøm: float | ndarray, hp_pumpemeter: float | ndar
     return ρ_vanntetthet * g * Q_volumstrøm * hp_pumpemeter
 
 
-
 def f_rørfriksjonskoeffisent(v: float | ndarray, ρ: float, d: float, μ: float, ε: float):
     """Gir en tilnærming til Moodys diagram for turbulent strømning Re > 4000"""
     from numpy import log10
@@ -103,7 +101,6 @@ def f_rørfriksjonskoeffisent(v: float | ndarray, ρ: float, d: float, μ: float
     B = 5.74/(Re**0.9)
 
     return 0.25 / (log10(A+B)**2)
-
 
 
 if __name__ == "__main__":
