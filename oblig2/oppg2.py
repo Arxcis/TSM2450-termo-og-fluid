@@ -1,5 +1,11 @@
+"""
+------------------------------------------------------------------------------
+TSM2450:   Oblig 2 Oppg2 - En fontene i hagen
+Student:  Jonas (267431@usn.no)
+------------------------------------------------------------------------------
+"""
 
-
+from math import pi, atan
 
 def main():
     #
@@ -14,8 +20,7 @@ def main():
     
     #
     # Beregninger
-    #
-    from math import pi, atan
+    #    
     A_inn = (pi/4)*D_inn**2
     A_ut  = (pi/4)*D_ut**2
 
@@ -38,7 +43,7 @@ def main():
            = kg/s * m/s
            = kg/m3 * m3/s * m/s
            = rho   * Q    * v
-    sum(F) = F - Fmotkraft
+    sum(F) = F - Fmotkraft = m * a
         -p_inn*A_inn + Rx = rho * Q * (-v_inn)
         -p_ut*A_ut + Ry = rho * Q * (v_ut)
     """
@@ -61,5 +66,4 @@ def main():
     """)
 
 if __name__ == "__main__":
-
     main()

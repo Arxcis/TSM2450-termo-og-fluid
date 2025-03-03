@@ -1,6 +1,6 @@
 # TSM2450 Oblig 2
 
-- Student: Jonas
+- Student: Jonas (267431@usn.no)
 - Emne: Termo- og fluidmekanikk
 - Tid: Vår 2025 USN Porsgrunn
 - Repo: [https://github.com/Arxcis/TSM2450-termo-og-fluid/oblig2](https://github.com/Arxcis/TSM2450-termo-og-fluid/tree/main/oblig2)
@@ -75,9 +75,9 @@ hp = \Delta Z + \Delta h_{statisk} + \Delta h_{dynamisk} + hf_{rør} + h0_{sete}
 $$
 
 ```py
-   hp_pumpemeter = ΔZ_forskjellmeter\
-                 + Δhstat_statiskmeter\
-                 + Δhdyn_dynamiskmeter\
+   hp_pumpemeter = Z_forskjellmeter\
+                 + hstat_statiskmeter\
+                 + hdyn_dynamiskmeter\
                  + hf_rørtapmeter\
                  + h0_setetapmeter\
                  + h0_albuetapmeter * antall_albuer
@@ -118,6 +118,24 @@ Resultatet viser en tydelig lineær kobling mellom ønsket volumstrøm og påkre
 I oppg1b) foreslår RMG-engineering en pumpe med volumstrøm på 0.005 [m3/s] og en pumpeeffekt på 3800 [Watt]. Om en plotter ønsket volumstrøm på den lineære modellen fra resultatet til oppg1a), ser man at pumpen ikke vil fungere da den er for svak. Q = 0.005 vil nemlig kreve over 4000 [Watt] fra pumpa for å kunne opprettholde ønsket trykk på 7.0bar ved dyse.
 
 ![Plot av volumstrøm mot effekt](./bilder/plot-volumstrøm-mot-effekt-oppg1b.png)
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
 
 ## Oppg2
 
@@ -174,7 +192,7 @@ sum(F) = m * a
         = kg/s * m/s
         = kg/m3 * m3/s * m/s
         = rho   * Q    * v
-sum(F) = F - Fmotkraft
+sum(F) = F - Fmotkraft = m * a
     -p_inn*A_inn + Rx = rho * Q * (-v_inn)
     -p_ut*A_ut + Ry = rho * Q * (v_ut)
 """
@@ -182,7 +200,7 @@ Rx = rho_vann*Q_volumstrøm*(-v_inn) + p_inn*A_inn
 Ry = rho_vann*Q_volumstrøm*(+v_ut) + p_ut*A_ut
 
 from math import atan
-α = (atan(Ry/Rx)/pi) * 180
+alpha = (atan(Ry/Rx)/pi) * 180
 ```
 
 ### 2.4 Resultater
@@ -197,7 +215,7 @@ $ python oppg2.py
         p_ut     -2.41e+04 Pa,
         Rx            1.51 N,
         Ry           0.458 N,
-        α             16.8 °,
+        alpha         16.8 °,
 
 ```
 
@@ -206,3 +224,11 @@ $ python oppg2.py
 ### 2.5 Diskusjon
 
 Trykket blir lavere ved utgangen enn ved inngangen til bendet. Det blir rett og slett et undertrykk på 0.24 Bar, eller -0.24 bar overtrykk. Dette undertrykket sørger for å redusere kraftbehovet som trengs i y-retning, fordi undertrykket skaper en sugekraft på resten av bendet som peker oppover.
+
+Utløpshastigheten (9.43m/s) er over 10 ganger høyere enn inn-hastigheten (0.849m/s) og fontenespruten vil stå 4.5 meter opp i lufta.
+
+$$
+h = \frac{v^2}{2g} = \frac{9.43^2}{2(9.81)} \approx 4.5m
+$$
+
+Det er kanskje i høyeste laget for en fontene i et nøkternt nabolag.

@@ -1,3 +1,9 @@
+"""
+------------------------------------------------------------------------------
+TSM2450:   Oblig 2 Oppg1 - 3 dyser og 1 pumpe
+Student:  Jonas (267431@usn.no)
+------------------------------------------------------------------------------
+"""
 
 from math import pi
 from numpy import array, ndarray, append
