@@ -1,6 +1,6 @@
 
 from math import pi
-from numpy import array, ndarray
+from numpy import array, ndarray, append
 
 # Globale konstanter
 ρ_vanntetthet = 1000
@@ -13,6 +13,7 @@ PASCAL_METER = (ρ_vanntetthet*g)
 METER_PASCAL = PASCAL_METER**-1
 BAR_METER = PASCAL_METER/PASCAL_BAR
 
+
 def main():
     """Regner ut hvilket trykk, volumstrøm og effekt en pumpe må ha for ulike dyser og en gitt statisk dysetrykk."""
 
@@ -23,14 +24,16 @@ def main():
     dysefaktor = array([17, 56, 107])
 
     # Beregninger
-    volumstrøm = finn_dysestrøm(dysefaktor, Δhp_statiskmeter)
+    volumstrøm = finn_dysestrøm(dysefaktor, Δhp_statiskmeter) # Oppg1a)
+    volumstrøm = append(volumstrøm, 5e-3)                     # Append for oppg1b)
     pumpemeter = finn_pumpemeter(volumstrøm, Δhp_statiskmeter)
     effekt     = finn_pumpeeffekt(volumstrøm, pumpemeter)
 
     # Resultat
     print("dysefaktor: ", dysefaktor, "")
+    print("volumstrøm: ", volumstrøm, "[m3/sekund]")
     print("volumstrøm: ", volumstrøm*LITER_M3*SEKUND_MINUTT, "[l/min]")
-    print("pumpebar: ", pumpemeter*BAR_METER, "[Bar]")
+    print("pumpetrykk: ", pumpemeter*BAR_METER, "[Bar]")
     print("effekt: ", effekt, "[Watt]")
 
 
