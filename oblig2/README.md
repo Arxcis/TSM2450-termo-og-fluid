@@ -1,5 +1,6 @@
 # TSM2450 Oblig 2
 
+- Student: Jonas
 - Emne: Termo- og fluidmekanikk
 - Tid: Vår 2025 USN Porsgrunn
 - Repo: [https://github.com/Arxcis/TSM2450-oblig1](https://github.com/Arxcis/TSM2450-termo-og-fluid)
@@ -104,11 +105,17 @@ effekt:  [ 1980.89905577  6533.63149159 12528.25180008  4140.13608357] [Watt]
 
 ### Diskusjon 1a)
 
-Resultatet viser en tydelig lineær kobling mellom ønsket volumstrøm og påkrevd pumpeeffekt. Ved den minste volumstrømmen holder det med en pumpe som kan levere 2000 watt. Under den høyeste volumstrømmen kreves en pumpe godt over 12 000 watt.
+Resultatet viser en tydelig lineær kobling mellom ønsket volumstrøm og påkrevd pumpeeffekt. Ved den minste volumstrømmen holder det med en pumpe som kan levere 2000 watt for å opprettholde 7 bar ved dyse. Under den høyeste volumstrømmen kreves en pumpe godt over 12 000 watt (!). Med andre ord, vil en 6-dobling i dysefaktor føre til en 6-dobling i volumstrømmen, som igjen vil føre til en 6-dobling i effektbehovet.
+
+|  | min | max | max/min |
+|-----|---|----|---------|
+| dysefaktor | 17 | 107 | 6.3x |  
+| Q [l/min]  | 144 | 904 | 6.3x | 
+| P [W]  | 1981 |  12 528 | 6.3x |
 
 ### Diskusjon 1b)
 
-I oppg1b) foreslår RMG-engineering en pumpe med volumstrøm på 0.005 [m3/s] og en pumpeeffekt på 3800 [Watt]. Om en plotter ønsket volumstrøm på den lineære modellen fra resultatet, ser man at pumpen ikke vil fungere da den er for svak. Q = 0.005 vil nemlig kreve over 4000 [Watt] fra pumpa for å kunne opprettholde ønsket trykk på 7.0bar ved dyse.
+I oppg1b) foreslår RMG-engineering en pumpe med volumstrøm på 0.005 [m3/s] og en pumpeeffekt på 3800 [Watt]. Om en plotter ønsket volumstrøm på den lineære modellen fra resultatet til oppg1a), ser man at pumpen ikke vil fungere da den er for svak. Q = 0.005 vil nemlig kreve over 4000 [Watt] fra pumpa for å kunne opprettholde ønsket trykk på 7.0bar ved dyse.
 
 ![Plot av volumstrøm mot effekt](./bilder/plot-volumstrøm-mot-effekt-oppg1b.png)
 
